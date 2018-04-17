@@ -1,0 +1,75 @@
+// out:  ../../dist/css/index.min.css, compress: true, autoprefixer: true
+
+.dimensiones(@wid, @heig){
+  width: @wid;
+  height: @heig;
+}
+
+.setFlex(@just, @alig, @direc){
+  display: flex;
+  justify-content: @just;
+  align-items: @alig;
+  flex-direction: @direc;
+}
+
+.contenedor{
+  .dimensiones(800px, 400px);
+  .setFlex(space-between, center, row);
+  margin: auto;
+  border: 2px solid grey;
+}
+
+.carton{
+  .dimensiones(250px, 350px);
+  .setFlex(flex-start, center, column);
+  background: grey;
+}
+
+.textoCarton{
+  margin-top: 20px;
+  font-size: 22px;
+}
+
+.numeros{
+  .dimensiones(78%, 65%);
+  .setFlex(space-between, center, row);
+  margin-top: 25px;
+  padding: 10px;
+  flex-wrap: wrap;
+  font-size: 20px;
+
+}
+
+.numero{
+  .dimensiones(30px, 30px);
+  .setFlex(center, center, row);
+  border-radius: 80px;
+  border: 2px solid black;
+  background: white;
+}
+
+.tachado{
+  background: red;
+  text-decoration: line-through;
+}
+
+.centro{
+  .dimensiones(300px, 346px);
+  .setFlex(flex-start, center, column);
+  border: 2px solid red;
+}
+
+.bola{
+  .dimensiones(100px, 100px);
+  .setFlex(center, center, row);
+  margin-top: 40px;
+  border-radius: 80px;
+  border: 2px solid black;
+  font-size: 36px;
+}
+
+.boton{
+  .dimensiones(140px, 30px);
+  margin-top: 40px;
+  background: grey;
+}
