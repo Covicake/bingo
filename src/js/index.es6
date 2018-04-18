@@ -113,7 +113,7 @@ function nuevoCarton(){
 function mostrarCartones(){
 
     let textoGanador = document.querySelectorAll(".textoCarton")[1];
-    textoGanador.textContent = "";
+    textoGanador.textContent = ""; 
 
     elems.cartones[0].innerHTML = "";
     elems.cartones[1].innerHTML = "";
