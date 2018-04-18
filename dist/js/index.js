@@ -1,5 +1,7 @@
 "use strict";
 
+//--------Globales-----------
+
 var elems = {
   cartones: document.querySelectorAll(".carton .numeros"),
   bola_bingo: document.querySelector(".bola"),
@@ -9,11 +11,48 @@ var elems = {
 var numeros = _.shuffle(_.range(1, 91));
 var carton = { cpu: [], jugador: [] };
 
+//----------Funciones--------------
 function sacarNumero() {
   var numeroBola = numeros.shift(); //Elimina y saca el primer numero.
   elems.bola_bingo.textContent = String(numeroBola);
   comprobarNumero(numeroBola);
+  comprobarLinea("cpu");
+  comprobarLinea("jugador");
+
   comprobarGanador();
+}
+
+function comprobarLinea(player) {
+
+  var linea = carton.cpu.slice(0, 5);
+
+  var contador = [0, 0, 0];
+
+  for (var i in linea) {
+    var l1 = i;
+    var l2 = Number(i) + 5;
+    var l3 = Number(i) + 10;
+    var numeroLinea1 = document.querySelector("." + player + " .n" + l1);
+    var numeroLinea2 = document.querySelector("." + player + " .n" + l2);
+    var numeroLinea3 = document.querySelector("." + player + " .n" + l3);
+
+    if (numeroLinea1 != undefined && numeroLinea1.classList.contains("tachado")) {
+      console.log(player, i);
+      contador[0]++;
+    }
+    if (numeroLinea2 != undefined && numeroLinea2.classList.contains("tachado")) {
+      console.log(player, i);
+      contador[1]++;
+    }
+    if (numeroLinea3 != undefined && numeroLinea3.classList.contains("tachado")) {
+      console.log(player, i);
+      contador[2]++;
+    }
+  }
+
+  if (contador[0] == 5 || contador[1] == 5 || contador[2] == 5) {
+    ganador(player);
+  }
 }
 
 function comprobarNumero(numeroBola) {
@@ -69,7 +108,7 @@ function nuevoCarton() {
   return numeros_carton;
 }
 
-function crearCartones() {
+function mostrarCartones() {
   for (var i in _.range(1, 16)) {
     var numeroJ = document.createElement("div");
     var numeroC = document.createElement("div");
@@ -88,4 +127,4 @@ function crearCartones() {
 carton.cpu = nuevoCarton();
 carton.jugador = nuevoCarton();
 
-crearCartones();
+mostrarCartones();

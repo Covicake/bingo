@@ -1,3 +1,5 @@
+//--------Globales-----------
+
 let elems = {
   cartones: document.querySelectorAll(".carton .numeros"),
   bola_bingo: document.querySelector(".bola"),
@@ -7,11 +9,49 @@ let elems = {
 let numeros = _.shuffle(_.range(1, 91));
 let carton = {cpu: [], jugador: []};
 
+
+//----------Funciones--------------
 function sacarNumero(){
   let numeroBola = numeros.shift(); //Elimina y saca el primer numero.
   elems.bola_bingo.textContent = String(numeroBola);
   comprobarNumero(numeroBola);
+  comprobarLinea("cpu");
+  comprobarLinea("jugador");
+
   comprobarGanador();
+}
+
+function comprobarLinea(player){
+
+  let linea = carton.cpu.slice(0, 5);
+
+  let contador = [0, 0, 0];
+
+  for(let i in linea){
+    let l1 = i;
+    let l2 = Number(i) + 5;
+    let l3 = Number(i) + 10;
+    let numeroLinea1 = document.querySelector(`.${player} .n${l1}`);
+    let numeroLinea2 = document.querySelector(`.${player} .n${l2}`);
+    let numeroLinea3 = document.querySelector(`.${player} .n${l3}`);
+
+    if(numeroLinea1 != undefined && numeroLinea1.classList.contains("tachado")){
+      console.log(player, i);
+      contador[0]++;
+    }
+    if(numeroLinea2 != undefined && numeroLinea2.classList.contains("tachado")){
+      console.log(player, i);
+      contador[1]++;
+    }
+    if(numeroLinea3 != undefined && numeroLinea3.classList.contains("tachado")){
+      console.log(player, i);
+      contador[2]++;
+    }
+  }
+
+  if(contador[0] == 5 || contador[1] == 5 || contador[2] == 5){
+    ganador(player);
+  }
 }
 
 function comprobarNumero(numeroBola){
@@ -63,15 +103,12 @@ function ganador(ganador){
 
 }
 
-
-
-
 function nuevoCarton(){
   let numeros_carton = _.shuffle(numeros).slice(0,15);
   return numeros_carton;
 }
 
-function crearCartones(){
+function mostrarCartones(){
     for(let i in _.range(1, 16)){
       let numeroJ = document.createElement("div");
       let numeroC = document.createElement("div");
@@ -87,9 +124,7 @@ function crearCartones(){
     }
 }
 
-
-
 carton.cpu = nuevoCarton();
 carton.jugador = nuevoCarton();
 
-crearCartones();
+mostrarCartones();
