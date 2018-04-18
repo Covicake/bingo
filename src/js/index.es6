@@ -111,6 +111,8 @@ function nuevoCarton(){
 }
 
 function mostrarCartones(){
+    elems.cartones[0].innerHTML = "";
+    elems.cartones[1].innerHTML = "";
     for(let i in _.range(1, 16)){
       let numeroJ = document.createElement("div");
       let numeroC = document.createElement("div");
