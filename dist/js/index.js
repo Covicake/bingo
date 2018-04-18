@@ -114,7 +114,7 @@ function nuevoCarton() {
 function mostrarCartones() {
 
   var textoGanador = document.querySelectorAll(".textoCarton")[1];
-  centro.remove(textoGanador); //CORREGIR
+  textoGanador.textContent = "";
 
   elems.cartones[0].innerHTML = "";
   elems.cartones[1].innerHTML = "";
