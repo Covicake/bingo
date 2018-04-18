@@ -9,7 +9,7 @@ var elems = {
   boton: document.querySelector(".boton")
 };
 
-var numeros = _.shuffle(_.range(1, 91));
+var numeros = void 0;
 var carton = { cpu: [], jugador: [] };
 
 //----------Funciones--------------
@@ -137,6 +137,7 @@ function mostrarCartones() {
   }
 }
 function nuevaPartida() {
+  numeros = _.shuffle(_.range(1, 91));
   carton.cpu = nuevoCarton();
   carton.jugador = nuevoCarton();
 
