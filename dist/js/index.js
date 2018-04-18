@@ -114,6 +114,10 @@ function nuevoCarton() {
 function mostrarCartones() {
   elems.cartones[0].innerHTML = "";
   elems.cartones[1].innerHTML = "";
+
+  elems.boton.setAttribute("onclick", "sacarNumero()");
+  elems.boton.textContent = "Sacar numero";
+
   for (var i in _.range(1, 16)) {
     var numeroJ = document.createElement("div");
     var numeroC = document.createElement("div");
