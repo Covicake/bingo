@@ -3,7 +3,8 @@
 let elems = {
   cartones: document.querySelectorAll(".carton .numeros"),
   bola_bingo: document.querySelector(".bola"),
-  centro: document.querySelector(".centro")
+  centro: document.querySelector(".centro"),
+  boton: document.querySelector(".boton")
 };
 
 let numeros = _.shuffle(_.range(1, 91));
@@ -100,7 +101,8 @@ function ganador(ganador){
   div.classList.add("textoCarton");
   div.textContent = `Gana ${ganador}`;
   elems.centro.appendChild(div);
-
+  elems.boton.setAttribute("onclick", "nuevaPartida()");
+  elems.boton.textContent = "Reiniciar";
 }
 
 function nuevoCarton(){
@@ -123,8 +125,11 @@ function mostrarCartones(){
       elems.cartones[1].appendChild(numeroC);
     }
 }
+function nuevaPartida(){
+  carton.cpu = nuevoCarton();
+  carton.jugador = nuevoCarton();
 
-carton.cpu = nuevoCarton();
-carton.jugador = nuevoCarton();
+  mostrarCartones();
+}
 
-mostrarCartones();
+nuevaPartida();
