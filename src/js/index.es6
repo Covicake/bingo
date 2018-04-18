@@ -111,6 +111,10 @@ function nuevoCarton(){
 }
 
 function mostrarCartones(){
+
+    let div = document.querySelectorAll(".textoCarton")[1];
+    elems.centro.remove(div);
+
     elems.cartones[0].innerHTML = "";
     elems.cartones[1].innerHTML = "";
 
