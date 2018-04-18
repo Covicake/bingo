@@ -1,5 +1,8 @@
 // out:  ../../dist/css/index.min.css, compress: true, autoprefixer: true
 
+@carton-col: #d7dee8;
+@center-col: #e6eaf2;
+
 .dimensiones(@wid, @heig){
   width: @wid;
   height: @heig;
@@ -16,13 +19,30 @@
   .dimensiones(800px, 400px);
   .setFlex(space-between, center, row);
   margin: auto;
-  border: 2px solid grey;
+  border: 2px solid @carton-col;
 }
 
 .carton{
-  .dimensiones(250px, 350px);
+  .dimensiones(250px, 400px);
   .setFlex(flex-start, center, column);
-  background: grey;
+  background: @carton-col;
+  background:
+		linear-gradient(135deg, transparent 10px, @carton-col 0) top left,
+		linear-gradient(225deg, @carton-col 10px, @carton-col 0) top right,
+		linear-gradient(315deg, @carton-col 10px, @carton-col 0) bottom right,
+		linear-gradient(45deg,  transparent 10px, @carton-col 0) bottom left;
+	background-size: 60% 50%;
+	background-repeat: no-repeat;
+}
+
+.cpu{  /*Herencia de carton para modificar linear-gradient.*/
+  background:
+		linear-gradient(135deg, @carton-col 10px, @carton-col 0) top left,
+		linear-gradient(225deg, transparent 10px, @carton-col 0) top right,
+		linear-gradient(315deg, transparent 10px, @carton-col 0) bottom right,
+		linear-gradient(45deg,  @carton-col 10px, @carton-col 0) bottom left;
+	background-size: 60% 50%;
+	background-repeat: no-repeat;
 }
 
 .textoCarton{
@@ -49,14 +69,14 @@
 }
 
 .tachado{
-  background: red;
+  background: #cc5f5f;
   text-decoration: line-through;
 }
 
 .centro{
-  .dimensiones(300px, 346px);
+  .dimensiones(300px, 400px);
   .setFlex(flex-start, center, column);
-  border: 2px solid red;
+  background: @center-col;
 }
 
 .bola{
@@ -64,12 +84,12 @@
   .setFlex(center, center, row);
   margin-top: 40px;
   border-radius: 80px;
-  border: 2px solid black;
   font-size: 36px;
+  background: radial-gradient(circle at 50px 10px, white, grey);
 }
 
 .boton{
   .dimensiones(140px, 30px);
   margin-top: 40px;
-  background: grey;
+  background: @center-col;
 }
